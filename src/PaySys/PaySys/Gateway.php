@@ -5,6 +5,10 @@ namespace PaySys\PaySys;
 use Nette;
 
 
+/**
+ * @method void onBeforePayRequest(Payment $payment)
+ * @method void onPayRequest(Payment $payment)
+ */
 abstract class Gateway implements IGateway
 {
 	use Nette\SmartObject;

@@ -2,9 +2,13 @@
 
 namespace PaySys\PaySys;
 
+use Nette;
 use Nette\Application\UI\Control;
 
 
+/**
+ * @property Nette\Application\UI\ITemplate $template
+ */
 class Button extends Control
 {
 
