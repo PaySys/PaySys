@@ -6,17 +6,17 @@ use Nette;
 
 
 /**
- * @method void onBeforePayRequest(Payment $payment)
- * @method void onPayRequest(Payment $payment)
+ * @method void onBeforePayRequest(IPayment $payment)
+ * @method void onPayRequest(IPayment $payment)
  */
 abstract class Gateway implements IGateway
 {
 	use Nette\SmartObject;
 
-	/** @var callable[]  function (Payment $payment); Occurs before pay request */
+	/** @var callable[]  function (IPayment $payment); Occurs before pay request */
 	public $onBeforePayRequest;
 
-	/** @var callable[]  function (Payment $payment); Occurs on pay request */
+	/** @var callable[]  function (IPayment $payment); Occurs on pay request */
 	public $onPayRequest;
 
 
