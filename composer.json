@@ -21,10 +21,10 @@
 	},
 	"require-dev": {
 		"jakub-onderka/php-parallel-lint": "~0.8",
-		"nette/tester": "@dev",
-		"nette/application": ">=2.0",
-		"nette/utils": ">=2.4",
-		"phpstan/phpstan-nette": ">=0.6"
+		"nette/tester": "~1.7@dev",
+		"nette/application": "~2.0@dev",
+		"nette/utils": "~2.4@dev",
+		"phpstan/phpstan-nette": "~0.6"
 	},
 	"autoload": {
 		"psr-0": {
