@@ -24,9 +24,6 @@ class Button extends Control
 	/** @var IPayment */
 	private $payment;
 
-	/** @var Gateway */
-	private $gateway;
-
 	/** @var IConfiguration */
 	private $config;
 
