@@ -21,12 +21,15 @@ install:
     - composer update --no-interaction --prefer-source $COMPOSER_EXTRA_ARGS
 
 before_script:
-    - ./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
-    - ./vendor/bin/phpstan analyse -l 4 -c vendor/phpstan/phpstan-nette/extension.neon src tests
-    - composer create-project nette/code-checker code-checker ~2.3 --no-interaction --prefer-source
-    - php code-checker/src/code-checker.php -d src
-    - php code-checker/src/code-checker.php -d tests
-    - if [[ $TRAVIS_PHP_VERSION == '7.1' ]] && [[ $COMPOSER_EXTRA_ARGS == '' ]]; then FLAGS="-d zend_extension=xdebug.so --coverage coverage.xml --coverage-src src"; fi;
+    - |
+        if [[ $TRAVIS_PHP_VERSION == '7.1' ]] && [[ $COMPOSER_EXTRA_ARGS == '' ]]; then
+            ./vendor/bin/parallel-lint -e php,phpt --exclude vendor .
+            ./vendor/bin/phpstan analyse -l 4 -c vendor/phpstan/phpstan-nette/extension.neon src tests
+            composer create-project nette/code-checker code-checker ~2.3 --no-interaction --prefer-source
+            php code-checker/src/code-checker.php -d src
+            php code-checker/src/code-checker.php -d tests
+            FLAGS="-d zend_extension=xdebug.so --coverage coverage.xml --coverage-src src"
+        fi
 
 script:
     - vendor/bin/tester tests -s -c tests/php-unix.ini -p php $FLAGS
