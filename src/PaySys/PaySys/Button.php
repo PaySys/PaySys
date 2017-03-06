@@ -8,9 +8,18 @@ use Nette\Application\UI\Control;
 
 /**
  * @property Nette\Application\UI\ITemplate $template
+ * @method void onBeforePayRequest(IPayment $payment)
+ * @method void onPayRequest(IPayment $payment)
  */
 class Button extends Control
 {
+
+	/** @var callable[]  function (IPayment $payment); Occurs before pay request */
+	public $onBeforePayRequest;
+
+	/** @var callable[]  function (IPayment $payment); Occurs on pay request */
+	public $onPayRequest;
+
 
 	/** @var IPayment */
 	private $payment;
@@ -22,11 +31,10 @@ class Button extends Control
 	private $config;
 
 
-	public function __construct(IPayment $payment, Gateway $gateway, IConfiguration $config)
+	public function __construct(IPayment $payment, IConfiguration $config)
 	{
 		parent::__construct();
 		$this->payment = $payment;
-		$this->gateway = $gateway;
 		$this->config = $config;
 	}
 
@@ -39,7 +47,7 @@ class Button extends Control
 
 	public function handlePay()
 	{
-		$this->gateway->onBeforePayRequest($this->payment);
-		$this->gateway->onPayRequest($this->payment);
+		$this->onBeforePayRequest($this->payment);
+		$this->onPayRequest($this->payment);
 	}
 }
