@@ -30,7 +30,6 @@ class Button extends Control
 
 	public function __construct(IPayment $payment, IConfiguration $config)
 	{
-		parent::__construct();
 		$this->payment = $payment;
 		$this->config = $config;
 	}
